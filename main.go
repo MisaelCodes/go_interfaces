@@ -30,6 +30,8 @@ func main() {
 	} else {
 		fmt.Println(res2)
 		fmt.Println(bArr)
-        fmt.Println(string(bArr))
+		fmt.Println(string(bArr))
 	}
+	cl := basic_level.ConsoleLogger{}
+	cl.Write(bArr)
 }
