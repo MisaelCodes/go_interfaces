@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"io"
+	"sort"
 
 	"github.com/MisaelCodes/go_interfaces/basic_level"
+	"github.com/MisaelCodes/go_interfaces/intermediate_level"
 )
 
 func main() {
@@ -34,5 +36,18 @@ func main() {
 	}
 	cl := basic_level.ConsoleLogger{}
 	cl.Write(bArr)
-    basic_level.MakeSound(basic_level.Dog{})
+	basic_level.MakeSound(basic_level.Dog{})
+
+	//----------- Intermediate -----//
+
+	product1 := intermediate_level.Product{Name: "Invoice", Price: 1.00}
+    product2 := intermediate_level.Product{Name: "Invoice", Price: 2.00}
+    product3 := intermediate_level.Product{Name: "Invoice", Price: 3.00}
+    product4 := intermediate_level.Product{Name: "Invoice", Price: 4.00}
+    product5 := intermediate_level.Product{Name: "Invoice", Price: 5.00}
+
+    pl := intermediate_level.ProductList{product5,product2,product4,product3,product1}
+    fmt.Println(pl)
+    sort.Sort(pl)
+    fmt.Println(pl)
 }
