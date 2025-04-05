@@ -34,4 +34,5 @@ func main() {
 	}
 	cl := basic_level.ConsoleLogger{}
 	cl.Write(bArr)
+    basic_level.MakeSound(basic_level.Dog{})
 }
