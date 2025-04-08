@@ -41,13 +41,21 @@ func main() {
 	//----------- Intermediate -----//
 
 	product1 := intermediate_level.Product{Name: "Invoice", Price: 1.00}
-    product2 := intermediate_level.Product{Name: "Invoice", Price: 2.00}
-    product3 := intermediate_level.Product{Name: "Invoice", Price: 3.00}
-    product4 := intermediate_level.Product{Name: "Invoice", Price: 4.00}
-    product5 := intermediate_level.Product{Name: "Invoice", Price: 5.00}
+	product2 := intermediate_level.Product{Name: "Invoice", Price: 2.00}
+	product3 := intermediate_level.Product{Name: "Invoice", Price: 3.00}
+	product4 := intermediate_level.Product{Name: "Invoice", Price: 4.00}
+	product5 := intermediate_level.Product{Name: "Invoice", Price: 5.00}
 
-    pl := intermediate_level.ProductList{product5,product2,product4,product3,product1}
-    fmt.Println(pl)
-    sort.Sort(pl)
-    fmt.Println(pl)
+	pl := intermediate_level.ProductList{product5, product2, product4, product3, product1}
+	fmt.Println(pl)
+	sort.Sort(pl)
+	fmt.Println(pl)
+
+	io.Copy(basic_level.ConsoleLogger{}, intermediate_level.UpperCaseReader{S: "hola go"})
+	cl2 := intermediate_level.FileLogger{}
+	intermediate_level.LoggingStuff(cl2, "hellow go")
+
+    intermediate_level.DescribeType(11)
+    intermediate_level.DescribeType("hello")
+    intermediate_level.DescribeType(product1)
 }
