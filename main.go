@@ -58,4 +58,10 @@ func main() {
     intermediate_level.DescribeType(11)
     intermediate_level.DescribeType("hello")
     intermediate_level.DescribeType(product1)
+
+    db1 := intermediate_level.MockDB{}
+    db2 := intermediate_level.PostgreDB{}
+    intermediate_level.FetchData(&db1)
+    intermediate_level.FetchData(&db2)
+
 }
