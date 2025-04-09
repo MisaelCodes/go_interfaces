@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"io"
 	"sort"
+	"strings"
 
+	"github.com/MisaelCodes/go_interfaces/advanced_level"
 	"github.com/MisaelCodes/go_interfaces/basic_level"
 	"github.com/MisaelCodes/go_interfaces/intermediate_level"
 )
@@ -63,5 +65,11 @@ func main() {
     db2 := intermediate_level.PostgreDB{}
     intermediate_level.FetchData(&db1)
     intermediate_level.FetchData(&db2)
-
+    afl := advanced_level.NewFileLogger("/home/misa/Documents/learning/golang/specifics/go_interfaces/advanced.log")
+    acl := advanced_level.ConsoleLogger{}
+    amw := io.MultiWriter(afl,&acl)
+    asr := strings.NewReader("something to be read")
+    if _, err := io.Copy(amw,asr); err != nil{
+        fmt.Println(err)
+    }
 }
