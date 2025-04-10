@@ -74,4 +74,8 @@ func main() {
 	}
 	emailListener := &advanced_level.EmailListener{}
 	advanced_level.ListenSomething(emailListener)
+	inMCache := advanced_level.NewInMemoryCache(map[string]string{"1": "Hello Misa"})
+	user := advanced_level.UserInfo{C: inMCache}
+	fmt.Println(user.Get("1"))
+	user.Get("some uuid")
 }
