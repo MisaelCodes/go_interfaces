@@ -57,19 +57,21 @@ func main() {
 	cl2 := intermediate_level.FileLogger{}
 	intermediate_level.LoggingStuff(cl2, "hellow go")
 
-    intermediate_level.DescribeType(11)
-    intermediate_level.DescribeType("hello")
-    intermediate_level.DescribeType(product1)
+	intermediate_level.DescribeType(11)
+	intermediate_level.DescribeType("hello")
+	intermediate_level.DescribeType(product1)
 
-    db1 := intermediate_level.MockDB{}
-    db2 := intermediate_level.PostgreDB{}
-    intermediate_level.FetchData(&db1)
-    intermediate_level.FetchData(&db2)
-    afl := advanced_level.NewFileLogger("/home/misa/Documents/learning/golang/specifics/go_interfaces/advanced.log")
-    acl := advanced_level.ConsoleLogger{}
-    amw := io.MultiWriter(afl,&acl)
-    asr := strings.NewReader("something to be read")
-    if _, err := io.Copy(amw,asr); err != nil{
-        fmt.Println(err)
-    }
+	db1 := intermediate_level.MockDB{}
+	db2 := intermediate_level.PostgreDB{}
+	intermediate_level.FetchData(&db1)
+	intermediate_level.FetchData(&db2)
+	afl := advanced_level.NewFileLogger("/home/misa/Documents/learning/golang/specifics/go_interfaces/advanced.log")
+	acl := advanced_level.ConsoleLogger{}
+	amw := io.MultiWriter(afl, &acl)
+	asr := strings.NewReader("something to be read")
+	if _, err := io.Copy(amw, asr); err != nil {
+		fmt.Println(err)
+	}
+	emailListener := &advanced_level.EmailListener{}
+	advanced_level.ListenSomething(emailListener)
 }
