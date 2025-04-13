@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
+	"net/http"
 	"sort"
 	"strings"
 
@@ -65,17 +67,44 @@ func main() {
 	db2 := intermediate_level.PostgreDB{}
 	intermediate_level.FetchData(&db1)
 	intermediate_level.FetchData(&db2)
-	afl := advanced_level.NewFileLogger("/home/misa/Documents/learning/golang/specifics/go_interfaces/advanced.log")
+	// ------------- Advanced --------//
+    afl := advanced_level.NewFileLogger("/home/misa/Documents/learning/golang/specifics/go_interfaces/advanced.log")
 	acl := advanced_level.ConsoleLogger{}
 	amw := io.MultiWriter(afl, &acl)
 	asr := strings.NewReader("something to be read")
 	if _, err := io.Copy(amw, asr); err != nil {
 		fmt.Println(err)
 	}
+
 	emailListener := &advanced_level.EmailListener{}
 	advanced_level.ListenSomething(emailListener)
 	inMCache := advanced_level.NewInMemoryCache(map[string]string{"1": "Hello Misa"})
 	user := advanced_level.UserInfo{C: inMCache}
 	fmt.Println(user.Get("1"))
 	user.Get("some uuid")
+
+    // At this point the io.Readers arent implemented as well as they should
+    // the idea would be to read an insert in the given slice
+    // there should be a pointer that says up to what index was read
+    // so that the caller knows when a problem happened, like at what byte everything failed.
+    // Another thing to do is always send the EOF when the data is fully readed.
+    // the implemented reader has access to that data, it might be through some of its properties.
+
+    // the caller can process the number of bytes read and if there's an error when processing return that.
+
+
+
+    // for io.Writer  just take care of returning error when an error occurs in the middle of the writing
+    // for example if we encounter a weird token or something.
+
+
+
+
+    // Server so that we can implement an http.Handler
+    serverTest := &http.Server{
+        Addr: ":8080",
+        Handler: &advanced_level.HelloHandler{Data: "Hello http"},
+    }
+    log.Fatal(serverTest.ListenAndServe())
+
 }
