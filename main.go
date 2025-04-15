@@ -98,7 +98,10 @@ func main() {
     // for example if we encounter a weird token or something.
 
 
-
+    circle := advanced_level.Circle{Radious: 2}
+    rectangle := advanced_level.Rectangle{Width: 2,Height: 2}
+    advanced_level.PrintArea(&circle)
+    advanced_level.PrintArea(&rectangle)
 
     // Server so that we can implement an http.Handler
     serverTest := &http.Server{
